@@ -1,103 +1,200 @@
 "use client";
-import React from 'react';
-import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import resultsData from '@/data/results.json';
 
-const Result = () => {
+import { useState } from "react";
+import results from "@/data/results.json"; // adjust path if needed
+
+export default function ResultsPage() {
+  const [selected, setSelected] = useState<{
+    id: number;
+    image: string;
+  } | null>(null);
+
   return (
-    <section className="w-full py-20 bg-white">
-      <div className="max-w-[1100px] mx-auto px-4">
-        
-        {/* Header with Reveal Animation */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-24"
+    <>
+      {/* This breaks OUT of the md:px-52 padding in layout */}
+      <div
+        className="
+        -mx-4 md:-mx-52
+        bg-white min-h-screen
+      "
+      >
+        {/* Hero Banner */}
+        <div
+          className="relative w-full py-16 px-6 text-center overflow-hidden"
+          style={{
+            background:
+              "linear-gradient(135deg, #1d4ed8 0%, #1e40af 40%, #1e3a8a 100%)",
+          }}
         >
-          <span className="text-blue-600 font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-4 block">
-            The Gold Standard of Saharanpur
-          </span>
-          <h2 className="text-5xl md:text-8xl font-black text-blue-900 leading-none tracking-tighter">
-            Hall of <span className="text-blue-600">Fame</span>
-          </h2>
-        </motion.div>
+          {/* Decorative circles */}
+          <div className="absolute -top-16 -left-16 w-64 h-64 rounded-full opacity-10 bg-white" />
+          <div className="absolute -bottom-20 -right-10 w-80 h-80 rounded-full opacity-10 bg-white" />
+          <div className="absolute top-8 right-1/4 w-20 h-20 rounded-full opacity-10 bg-blue-300" />
 
-        {/* The Animated Stack */}
-        <div className="flex flex-col space-y-24 md:space-y-40">
-          {resultsData.map((item, index) => (
-            <ResultCard key={item.id} item={item} index={index} />
+          <p className="relative text-blue-200 text-xs tracking-[6px] uppercase font-mono mb-3">
+            ✦ Our Achievers ✦
+          </p>
+          <h1 className="relative text-white text-4xl md:text-6xl font-bold tracking-tight mb-4">
+            Results{" "}
+            <span className="text-blue-300 italic font-light">2025</span>
+          </h1>
+          <p className="relative text-blue-200 text-base max-w-md mx-auto leading-relaxed">
+            Congratulations to all our brilliant students who made us proud this
+            year.
+          </p>
+          <div className="relative mt-6 w-16 h-1 mx-auto bg-blue-300 rounded-full" />
+        </div>
+
+        {/* Stats bar */}
+        <div
+          className="flex divide-x divide-blue-100 border-b border-blue-100"
+          style={{ background: "#eff6ff" }}
+        >
+          {[
+            { label: "Total Results", value: results.length },
+            { label: "Top Scorers", value: "4" },
+            { label: "Batch", value: "2025" },
+          ].map((s) => (
+            <div key={s.label} className="flex-1 text-center py-4 px-2">
+              <div className="text-2xl font-bold text-blue-700">{s.value}</div>
+              <div className="text-xs text-blue-400 uppercase tracking-widest font-mono">
+                {s.label}
+              </div>
+            </div>
           ))}
         </div>
+
+        {/* Grid */}
+        <div className="px-6 md:px-16 py-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-6xl mx-auto">
+            {results.map((item, i) => (
+              <div
+                key={item.id}
+                onClick={() => setSelected(item)}
+                className="group relative cursor-pointer rounded-2xl overflow-hidden"
+                style={{
+                  aspectRatio: "3/4",
+                  background: "#f0f7ff",
+                  border: "2px solid #bfdbfe",
+                  boxShadow: "0 4px 20px rgba(29,78,216,0.08)",
+                  transition:
+                    "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
+                  animationDelay: `${i * 80}ms`,
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform =
+                    "translateY(-6px) scale(1.02)";
+                  (e.currentTarget as HTMLElement).style.boxShadow =
+                    "0 16px 40px rgba(29,78,216,0.22)";
+                  (e.currentTarget as HTMLElement).style.borderColor =
+                    "#3b82f6";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform =
+                    "translateY(0) scale(1)";
+                  (e.currentTarget as HTMLElement).style.boxShadow =
+                    "0 4px 20px rgba(29,78,216,0.08)";
+                  (e.currentTarget as HTMLElement).style.borderColor =
+                    "#bfdbfe";
+                }}
+              >
+                {/* Image — fills card, top-aligned so face is always visible */}
+                <img
+                  src={item.image}
+                  alt={`Result ${item.id}`}
+                  className="w-full h-full object-cover object-top"
+                  style={{ display: "block" }}
+                />
+
+                {/* Bottom gradient overlay */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, transparent 55%, rgba(30,58,138,0.85) 100%)",
+                  }}
+                />
+
+                {/* Bottom label */}
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <div className="w-6 h-0.5 bg-blue-300 rounded mb-1" />
+                  <span className="text-blue-100 text-xs tracking-widest uppercase font-mono">
+                    #{item.id}
+                  </span>
+                </div>
+
+                {/* Zoom icon on hover */}
+                <div
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                  style={{ background: "rgba(29,78,216,0.12)" }}
+                >
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xl"
+                    style={{
+                      background: "rgba(29,78,216,0.7)",
+                      backdropFilter: "blur(6px)",
+                    }}
+                  >
+                    ⊕
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer strip */}
+        <div
+          className="text-center py-6 border-t border-blue-100"
+          style={{ background: "#eff6ff" }}
+        >
+          <span className="text-blue-300 text-xs tracking-[4px] font-mono uppercase">
+            {results.length} students · Batch 2025
+          </span>
+        </div>
       </div>
-    </section>
+
+      {/* Lightbox */}
+      {selected && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{
+            background: "rgba(15,23,42,0.9)",
+            backdropFilter: "blur(10px)",
+          }}
+          onClick={() => setSelected(null)}
+        >
+          <div
+            className="relative rounded-2xl overflow-hidden"
+            style={{
+              maxWidth: "420px",
+              width: "100%",
+              maxHeight: "85vh",
+              border: "2px solid #3b82f6",
+              boxShadow: "0 40px 80px rgba(29,78,216,0.4)",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selected.image}
+              alt={`Result ${selected.id}`}
+              className="w-full h-full object-contain"
+              style={{ display: "block", maxHeight: "85vh" }}
+            />
+            <button
+              onClick={() => setSelected(null)}
+              className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-white text-lg font-bold"
+              style={{
+                background: "rgba(29,78,216,0.8)",
+                border: "1px solid rgba(255,255,255,0.3)",
+                cursor: "pointer",
+              }}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
-};
-
-// Separate component for individual card logic
-const ResultCard = ({ item, index }: { item: any, index: number }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9, y: 50 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ 
-        duration: 0.8, 
-        ease: [0.16, 1, 0.3, 1], // Custom bouncy ease
-        delay: 0.1 
-      }}
-      viewport={{ once: true, margin: "-100px" }}
-      className="relative w-full group"
-    >
-      {/* Dynamic Topper Badge */}
-      <motion.div 
-        animate={{ 
-          y: [0, -12, 0],
-          rotate: [6, 8, 6] 
-        }}
-        transition={{ 
-          repeat: Infinity, 
-          duration: 5, 
-          ease: "easeInOut" 
-        }}
-        className="absolute -top-8 -right-2 md:right-8 z-30 bg-blue-600 text-white font-black px-8 py-3 rounded-2xl shadow-[0_10px_30px_rgba(37,99,235,0.4)] border-4 border-white text-sm md:text-xl uppercase italic tracking-tighter"
-      >
-        Rank #1
-      </motion.div>
-
-      {/* Main Image Wrapper with Hover Lift */}
-      <motion.div 
-        whileHover={{ 
-            y: -10,
-            transition: { duration: 0.3 }
-        }}
-        className="relative w-full rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-white shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] border border-blue-50 group-hover:shadow-blue-900/10 transition-shadow duration-500"
-      >
-        {/* Glow Effect behind the image */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-blue-100/20 via-transparent to-white opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-        <Image
-          src={item.image}
-          alt="Sagar Sir Commerce Result Saharanpur"
-          width={1400}
-          height={900}
-          className="w-full h-auto object-contain block relative z-10" 
-          priority={index < 2}
-        />
-
-        {/* Shine Overlay Effect on Hover */}
-        <motion.div 
-          initial={{ x: '-100%' }}
-          whileHover={{ x: '100%' }}
-          transition={{ duration: 0.8 }}
-          className="absolute inset-0 z-20 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
-        />
-      </motion.div>
-
-      {/* Decorative background element for depth */}
-      <div className="absolute -inset-4 bg-blue-50/50 rounded-[5rem] -z-10 scale-95 group-hover:scale-100 transition-transform duration-700" />
-    </motion.div>
-  );
-};
-
-export default Result;
+}

@@ -60,7 +60,7 @@ export default function Home() {
             #1 Commerce Coaching in Saharanpur
           </motion.span>
           <h1 className="text-4xl md:text-6xl font-extrabold text-blue-900 mt-2 mb-4">
-            Master Commerce with Experts
+            Master Commerce with Sagar Sir
           </h1>
           <p className="text-blue-900/60 text-lg max-w-2xl mx-auto">
             Providing high-quality education for Class 11 & 12 students in Saharanpur. 
