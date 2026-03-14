@@ -1,6 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import {
+  Youtube,
+  Instagram,
+  Send,
+  MessageCircle,
+  Facebook,
+} from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -22,20 +29,44 @@ const linkItem = {
 };
 
 // SEO FIX: Added descriptive paths instead of "#"
+
 const socialLinks = [
-  { icon: "▶", label: "YouTube", href: "/youtube" },
-  { icon: "◈", label: "Instagram", href: "/instagram" },
-  { icon: "✈", label: "Telegram", href: "/telegram" },
-  { icon: "◉", label: "WhatsApp", href: "/whatsapp" },
-  { icon: "f", label: "Facebook", href: "/facebook" },
+  {
+    icon: <Youtube size={20} />,
+    label: "YouTube",
+    href: "https://youtube.com/@yourchannel",
+    color: "hover:text-red-600",
+  },
+  {
+    icon: <Instagram size={20} />,
+    label: "Instagram",
+    href: "https://instagram.com/yourprofile",
+    color: "hover:text-pink-500",
+  },
+  {
+    icon: <Send size={20} />,
+    label: "Telegram",
+    href: "https://t.me/yourusername",
+    color: "hover:text-blue-400",
+  },
+  {
+    icon: <MessageCircle size={20} />,
+    label: "WhatsApp",
+    href: "https://wa.me/7618550475",
+    color: "hover:text-green-500",
+  },
+  {
+    icon: <Facebook size={20} />,
+    label: "Facebook",
+    href: "https://facebook.com/yourpage",
+    color: "hover:text-blue-600",
+  },
 ];
 
 const courses = [
-
   { name: "Commerce Class 11", href: "/courses/commerce-class-11" },
- 
-  { name: "Commerce Class 12", href: "/courses/commerce-class-12" },
 
+  { name: "Commerce Class 12", href: "/courses/commerce-class-12" },
 ];
 
 const quickLinks = [
@@ -79,7 +110,6 @@ export default function CommerceFooter() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-8 pt-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-12 border-b border-white/10">
-          
           {/* Brand Column */}
           <motion.div
             initial="hidden"
@@ -87,20 +117,31 @@ export default function CommerceFooter() {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <motion.div variants={fadeUp} custom={0} className="flex items-center gap-3 mb-5">
+            <motion.div
+              variants={fadeUp}
+              custom={0}
+              className="flex items-center gap-3 mb-5"
+            >
               <div className="w-11 h-11 bg-gradient-to-br from-slate-700 to-slate-800 rounded-xl flex items-center justify-center text-xl font-black text-white shadow-lg shadow-slate-900/50">
                 C
               </div>
               <div>
-                <div className="font-serif text-lg font-bold text-white leading-tight">Commerce with Sharan Sir</div>
-                <div className="text-[10px] font-medium text-blue-400 tracking-widest uppercase mt-0.5">Commerce Academy</div>
+                <div className="font-serif text-lg font-bold text-white leading-tight">
+                  Commerce with Sharan Sir
+                </div>
+                <div className="text-[10px] font-medium text-blue-400 tracking-widest uppercase mt-0.5">
+                  Commerce Academy
+                </div>
               </div>
             </motion.div>
 
-            <motion.p variants={fadeUp} custom={0.1} className="text-sm text-slate-400 leading-relaxed mb-6 pr-4">
-              India's most trusted commerce coaching institute. Master
-              Commerce Studies with Sharan Sir's
-              unique teaching methodology.
+            <motion.p
+              variants={fadeUp}
+              custom={0.1}
+              className="text-sm text-slate-400 leading-relaxed mb-6 pr-4"
+            >
+              India's most trusted commerce coaching institute. Master Commerce
+              Studies with Sharan Sir's unique teaching methodology.
             </motion.p>
 
             <motion.div
@@ -110,18 +151,17 @@ export default function CommerceFooter() {
               viewport={{ once: true }}
               className="flex gap-2.5"
             >
-              {socialLinks.map((s) => (
-                <motion.a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label} // SEO Fix for icon-only links
-                  variants={linkItem}
-                  whileHover={{ y: -3 }}
-                  className="w-9 h-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center text-sm text-slate-400 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors"
-                  title={s.label}
+              {socialLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.label}
+                  className={`w-10 h-10 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white transition-all duration-300 ${link.color} hover:bg-white hover:scale-110 shadow-lg`}
                 >
-                  {s.icon}
-                </motion.a>
+                  {link.icon}
+                </a>
               ))}
             </motion.div>
           </motion.div>
@@ -195,8 +235,10 @@ export default function CommerceFooter() {
             variants={fadeUp}
             custom={0.2}
           >
-            <p className="text-[11px] tracking-[2.5px] uppercase text-blue-400 font-semibold mb-5">Connect</p>
-            
+            <p className="text-[11px] tracking-[2.5px] uppercase text-blue-400 font-semibold mb-5">
+              Connect
+            </p>
+
             <div className="space-y-4 mb-6">
               {contactItems.map((c) => (
                 <div key={c.label} className="flex items-start gap-3">
@@ -204,7 +246,9 @@ export default function CommerceFooter() {
                     {c.icon}
                   </div>
                   <div>
-                    <div className="text-[11px] text-slate-500 uppercase tracking-wide mb-0.5">{c.label}</div>
+                    <div className="text-[11px] text-slate-500 uppercase tracking-wide mb-0.5">
+                      {c.label}
+                    </div>
                     <div className="text-[13px] text-slate-300">{c.value}</div>
                   </div>
                 </div>
@@ -215,7 +259,9 @@ export default function CommerceFooter() {
               <div className="inline-flex items-center gap-1.5 bg-blue-900/30 border border-blue-800/50 rounded-full px-3 py-1 text-[11px] text-blue-400 font-medium mb-3">
                 📬 Newsletter
               </div>
-              <p className="text-[13px] text-slate-400 mb-3">Get free study tips & updates.</p>
+              <p className="text-[13px] text-slate-400 mb-3">
+                Get free study tips & updates.
+              </p>
               <div className="flex rounded-lg overflow-hidden border border-white/10 focus-within:border-blue-500 transition-colors">
                 <input
                   type="email"
@@ -247,18 +293,24 @@ export default function CommerceFooter() {
       >
         <p className="text-[13px] text-slate-500">
           © {new Date().getFullYear()}{" "}
-          <span className="text-blue-400 font-medium">Commerce with Sharan Sir</span>
+          <span className="text-blue-400 font-medium">
+            Commerce with Sharan Sir
+          </span>
           . All rights reserved.
         </p>
-        
+
         <div className="flex gap-5">
           {["Privacy Policy", "Terms of Use", "Refund Policy"].map((l) => (
-            <a key={l} href={`/${l.toLowerCase().replace(/ /g, "-")}`} className="text-xs text-slate-500 hover:text-blue-400 transition-colors">
+            <a
+              key={l}
+              href={`/${l.toLowerCase().replace(/ /g, "-")}`}
+              className="text-xs text-slate-500 hover:text-blue-400 transition-colors"
+            >
               {l}
             </a>
           ))}
         </div>
-        
+
         <p className="text-xs text-slate-500 flex items-center">
           Made with <HeartBeat /> for Commerce students
         </p>
