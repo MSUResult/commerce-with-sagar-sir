@@ -2,7 +2,7 @@ import React from "react";
 
 const WhatsAppIcon = () => {
   // Using the number from your profile/previous prompt
-  const phoneNumber = "917618550475"; // Added '91' for India country code
+  const phoneNumber = "918218615688"; // Added '91' for India country code
   const message = "Hello! I'm interested in your web development services.";
 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
