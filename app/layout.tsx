@@ -6,6 +6,8 @@ import WhatsAppIcon from "@/component/WhatsappIcon";
 
 import CommerceFooter from "@/component/footer";
 
+import CommerceBackground from "@/component/CommerceBackground";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -45,8 +47,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} md:px-44 md:py-4 bg-gray-100 antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable}  bg-gray-100 antialiased`}
       >
+   <CommerceBackground />
         <Navbar />
         {children}
         {/* This ensures the icon is global */}
