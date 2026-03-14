@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
@@ -25,7 +25,7 @@ const History = () => {
   const highlightWords = ["minds", "commerce", "confidence"];
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center py-20 space-y-16 px-6 bg-transparent">
+    <main className="relative min-h-screen flex flex-col items-center space-y-16 mt-24 px-6 bg-transparent">
       {/* Subtle Scrim: This makes the center area clearer without hiding the symbols */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.4)_0%,transparent_70%)]" />
 

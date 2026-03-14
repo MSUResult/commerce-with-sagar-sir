@@ -4,7 +4,7 @@ import { AnimateImageContainer } from "./AnimateIn";
 
 const ImageContainer = () => {
   return (
-    <div className="w-[100vw]  relative left-1/2 -ml-[50vw] h-screen overflow-hidden my-10">
+    <div className="w-[100vw]  relative left-1/2 -ml-[50vw] overflow-hidden mt-10">
       {/* w-[100vw]: Makes the div exactly as wide as the screen
           relative left-1/2 -translate-x-1/2: Centers the wide div 
           regardless of the parent's padding (md:px-52)
