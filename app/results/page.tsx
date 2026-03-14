@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import results from "@/data/results.json"; // adjust path if needed
+import { motion, AnimatePresence } from "framer-motion";
+import results from "@/data/results.json";
 
 export default function ResultsPage() {
   const [selected, setSelected] = useState<{
@@ -11,190 +12,161 @@ export default function ResultsPage() {
 
   return (
     <>
-      {/* This breaks OUT of the md:px-52 padding in layout */}
-      <div
-        className="
-        -mx-4 md:-mx-52
-        bg-white min-h-screen
-      "
-      >
+      {/* Container - Fixed horizontal overflow and responsive margins */}
+      <div className="-mx-4 lg:-mx-48 bg-transparent min-h-screen overflow-x-hidden">
         {/* Hero Banner */}
-        <div
-          className="relative w-full py-16 px-6 text-center overflow-hidden"
-          style={{
-            background:
-              "linear-gradient(135deg, #1d4ed8 0%, #1e40af 40%, #1e3a8a 100%)",
-          }}
-        >
-          {/* Decorative circles */}
-          <div className="absolute -top-16 -left-16 w-64 h-64 rounded-full opacity-10 bg-white" />
-          <div className="absolute -bottom-20 -right-10 w-80 h-80 rounded-full opacity-10 bg-white" />
-          <div className="absolute top-8 right-1/4 w-20 h-20 rounded-full opacity-10 bg-blue-300" />
+        <section className="relative w-full py-16 md:py-28 px-6 text-center">
+          <div className="absolute -top-16 -left-16 w-64 h-64 rounded-full opacity-10 bg-blue-400 blur-3xl" />
 
-          <p className="relative text-blue-200 text-xs tracking-[6px] uppercase font-mono mb-3">
-            ✦ Our Achievers ✦
-          </p>
-          <h1 className="relative text-white text-4xl md:text-6xl font-bold tracking-tight mb-4">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="relative text-blue-400 text-[10px] md:text-xs tracking-[0.5em] uppercase font-black mb-4"
+          >
+            ✦ Hall of Fame ✦
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="relative text-white text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6"
+          >
             Results{" "}
-            <span className="text-blue-300 italic font-light">2025</span>
-          </h1>
-          <p className="relative text-blue-200 text-base max-w-md mx-auto leading-relaxed">
-            Congratulations to all our brilliant students who made us proud this
-            year.
-          </p>
-          <div className="relative mt-6 w-16 h-1 mx-auto bg-blue-300 rounded-full" />
-        </div>
+            <span className="text-blue-500 italic font-light drop-shadow-2xl">
+              2025
+            </span>
+          </motion.h1>
 
-        {/* Stats bar */}
-        <div
-          className="flex divide-x divide-blue-100 border-b border-blue-100"
-          style={{ background: "#eff6ff" }}
-        >
-          {[
-            { label: "Total Results", value: results.length },
-            { label: "Top Scorers", value: "4" },
-            { label: "Batch", value: "2025" },
-          ].map((s) => (
-            <div key={s.label} className="flex-1 text-center py-4 px-2">
-              <div className="text-2xl font-bold text-blue-700">{s.value}</div>
-              <div className="text-xs text-blue-400 uppercase tracking-widest font-mono">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="relative text-slate-400 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed font-medium px-4"
+          >
+            Celebrating the extraordinary milestones achieved by our students.
+            Their hard work is our greatest pride.
+          </motion.p>
+        </section>
 
-        {/* Grid */}
-        <div className="px-6 md:px-16 py-12">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-6xl mx-auto">
-            {results.map((item, i) => (
+        {/* Stats Bar */}
+        <div className="max-w-6xl mx-auto px-6 -mt-8 mb-20 relative z-10">
+          <div className="grid grid-cols-3 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl md:rounded-[3rem] overflow-hidden shadow-2xl">
+            {[
+              { label: "Total Success", value: results.length },
+              { label: "Top Scorers", value: "4" },
+              { label: "Batch", value: "2025" },
+            ].map((s, idx) => (
               <div
-                key={item.id}
-                onClick={() => setSelected(item)}
-                className="group relative cursor-pointer rounded-2xl overflow-hidden"
-                style={{
-                  aspectRatio: "3/4",
-                  background: "#f0f7ff",
-                  border: "2px solid #bfdbfe",
-                  boxShadow: "0 4px 20px rgba(29,78,216,0.08)",
-                  transition:
-                    "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
-                  animationDelay: `${i * 80}ms`,
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform =
-                    "translateY(-6px) scale(1.02)";
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 16px 40px rgba(29,78,216,0.22)";
-                  (e.currentTarget as HTMLElement).style.borderColor =
-                    "#3b82f6";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform =
-                    "translateY(0) scale(1)";
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 4px 20px rgba(29,78,216,0.08)";
-                  (e.currentTarget as HTMLElement).style.borderColor =
-                    "#bfdbfe";
-                }}
+                key={s.label}
+                className={`text-center py-6 md:py-12 ${idx !== 2 ? "border-r border-white/5" : ""}`}
               >
-                {/* Image — fills card, top-aligned so face is always visible */}
-                <img
-                  src={item.image}
-                  alt={`Result ${item.id}`}
-                  className="w-full h-full object-cover object-top"
-                  style={{ display: "block" }}
-                />
-
-                {/* Bottom gradient overlay */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, transparent 55%, rgba(30,58,138,0.85) 100%)",
-                  }}
-                />
-
-                {/* Bottom label */}
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <div className="w-6 h-0.5 bg-blue-300 rounded mb-1" />
-                  <span className="text-blue-100 text-xs tracking-widest uppercase font-mono">
-                    #{item.id}
-                  </span>
+                <div className="text-xl md:text-5xl font-black text-white">
+                  {s.value}
                 </div>
-
-                {/* Zoom icon on hover */}
-                <div
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                  style={{ background: "rgba(29,78,216,0.12)" }}
-                >
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xl"
-                    style={{
-                      background: "rgba(29,78,216,0.7)",
-                      backdropFilter: "blur(6px)",
-                    }}
-                  >
-                    ⊕
-                  </div>
+                <div className="text-[7px] md:text-[10px] text-blue-400 uppercase tracking-[0.2em] font-bold mt-1">
+                  {s.label}
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Footer strip */}
-        <div
-          className="text-center py-6 border-t border-blue-100"
-          style={{ background: "#eff6ff" }}
-        >
-          <span className="text-blue-300 text-xs tracking-[4px] font-mono uppercase">
-            {results.length} students · Batch 2025
-          </span>
+        {/* Results Grid - Fixed Image Cropping */}
+        <div className="px-6 md:px-12 pb-32">
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={{ show: { transition: { staggerChildren: 0.05 } } }}
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 max-w-7xl mx-auto"
+          >
+            {results.map((item) => (
+              <motion.div
+                key={item.id}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                onClick={() => setSelected(item)}
+                // Removed forced aspect ratio to allow auto-height if needed,
+                // but kept a container for consistency
+                className="group relative cursor-pointer rounded-2xl md:rounded-3xl overflow-hidden bg-white/5 border border-white/10 hover:border-blue-500/50 transition-all duration-500 shadow-lg flex flex-col"
+              >
+                {/* Image Wrapper - Using p-2 and object-contain to prevent border cutting */}
+                <div className="relative w-full aspect-[3/4] bg-slate-900/40 p-1">
+                  <img
+                    src={item.image}
+                    alt={`Result ${item.id}`}
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                  />
+                  {/* Subtle vignette so images blend better */}
+                  <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.3)] pointer-events-none" />
+                </div>
+
+                {/* Content Area */}
+                <div className="p-4 md:p-5 bg-gradient-to-b from-white/5 to-transparent">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                    <span className="text-blue-400 text-[9px] font-bold uppercase tracking-wider">
+                      Official Scorecard
+                    </span>
+                  </div>
+                  <h3 className="text-white text-base md:text-lg font-black tracking-tight">
+                    Student Rank #{item.id}
+                  </h3>
+                </div>
+
+                {/* Hover Interaction Layer */}
+                <div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="bg-white text-blue-600 px-4 py-2 rounded-full text-xs font-black shadow-xl scale-90 group-hover:scale-100 transition-transform">
+                    VIEW FULL
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Footer */}
+        <div className="text-center py-16 border-t border-white/5 bg-white/5 backdrop-blur-xl">
+          <p className="text-slate-500 text-[10px] font-bold tracking-[0.4em] uppercase">
+            Commerce Excellence Saharanpur • {results.length} Success Stories
+          </p>
         </div>
       </div>
 
-      {/* Lightbox */}
-      {selected && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          style={{
-            background: "rgba(15,23,42,0.9)",
-            backdropFilter: "blur(10px)",
-          }}
-          onClick={() => setSelected(null)}
-        >
-          <div
-            className="relative rounded-2xl overflow-hidden"
-            style={{
-              maxWidth: "420px",
-              width: "100%",
-              maxHeight: "85vh",
-              border: "2px solid #3b82f6",
-              boxShadow: "0 40px 80px rgba(29,78,216,0.4)",
-            }}
-            onClick={(e) => e.stopPropagation()}
+      {/* Lightbox - Fixed for all image sizes */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-slate-950/95 backdrop-blur-xl"
+            onClick={() => setSelected(null)}
           >
-            <img
-              src={selected.image}
-              alt={`Result ${selected.id}`}
-              className="w-full h-full object-contain"
-              style={{ display: "block", maxHeight: "85vh" }}
-            />
-            <button
-              onClick={() => setSelected(null)}
-              className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-white text-lg font-bold"
-              style={{
-                background: "rgba(29,78,216,0.8)",
-                border: "1px solid rgba(255,255,255,0.3)",
-                cursor: "pointer",
-              }}
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="relative w-full max-w-4xl max-h-full flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
             >
-              ×
-            </button>
-          </div>
-        </div>
-      )}
+              <img
+                src={selected.image}
+                alt="Full Result"
+                className="w-auto h-auto max-w-full max-h-[90vh] rounded-xl shadow-2xl border border-white/10 object-contain"
+              />
+
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute -top-12 md:top-0 -right-0 md:-right-16 text-white/70 hover:text-white text-4xl font-light p-4 transition-colors"
+              >
+                ✕
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -50,7 +50,7 @@ const AboutAndFAQ = () => {
   ];
 
   return (
-    <section className="w-full bg-white py-12 md:py-24 overflow-x-hidden">
+    <section className="w-full bg-transparent py-12 md:py-24 overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-2">
         {/* --- Part 1: Hero Intro --- */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-20 md:mb-32">

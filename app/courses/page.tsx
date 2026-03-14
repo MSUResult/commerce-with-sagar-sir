@@ -5,30 +5,30 @@ import Link from "next/link";
 import Image from "next/image";
 import courses from "@/data/course.json";
 
-// SEO & JSON-LD Data
+// SEO & JSON-LD Data remains the same
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "itemListElement": courses.map((course, index) => ({
+  itemListElement: courses.map((course, index) => ({
     "@type": "ListItem",
-    "position": index + 1,
-    "item": {
+    position: index + 1,
+    item: {
       "@type": "Course",
-      "name": course.title,
-      "description": course.shortDescription,
-      "provider": {
+      name: course.title,
+      description: course.shortDescription,
+      provider: {
         "@type": "LocalBusiness",
-        "name": "Saharanpur Commerce Academy",
-        "address": {
+        name: "Saharanpur Commerce Academy",
+        address: {
           "@type": "PostalAddress",
-          "addressLocality": "Saharanpur",
-          "addressRegion": "UP",
-          "addressCountry": "IN"
-        }
+          addressLocality: "Saharanpur",
+          addressRegion: "UP",
+          addressCountry: "IN",
+        },
       },
-      "image": `https://yourdomain.com${course.image}`
-    }
-  }))
+      image: `https://yourdomain.com${course.image}`,
+    },
+  })),
 };
 
 const containerVariants = {
@@ -43,28 +43,30 @@ const cardVariants = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white py-20 px-6">
-      {/* Inject JSON-LD for SEO Ranking */}
+    // Changed to bg-transparent to show your .bg-container
+    <main className="min-h-screen bg-transparent py-20 px-6 relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-blue-600 font-bold tracking-widest uppercase text-sm"
+            className="text-blue-400 font-black tracking-[0.3em] uppercase text-xs"
           >
             #1 Commerce Coaching in Saharanpur
           </motion.span>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-blue-900 mt-2 mb-4">
-            Master Commerce with Sagar Sir
+          {/* Changed text to white/slate-50 for dark background visibility */}
+          <h1 className="text-4xl md:text-7xl font-black text-slate-50 mt-4 mb-6 tracking-tight">
+            Master Commerce with{" "}
+            <span className="text-blue-500">Sagar Sir</span>
           </h1>
-          <p className="text-blue-900/60 text-lg max-w-2xl mx-auto">
-            Providing high-quality education for Class 11 & 12 students in Saharanpur. 
-            Join our success-driven batches today.
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto font-medium">
+            Providing high-quality education for Class 11 & 12 students in
+            Saharanpur. Join our success-driven batches today.
           </p>
         </div>
 
@@ -76,51 +78,68 @@ export default function Home() {
         >
           {courses.map((course) => (
             <motion.div key={course.id} variants={cardVariants}>
-              <Link href={`/courses/${course.id}`} className="group block h-full">
+              <Link
+                href={`/courses/${course.id}`}
+                className="group block h-full"
+              >
                 <motion.div
-                  whileHover={{ y: -10 }}
-                  className="h-full bg-white border border-blue-100 rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-500"
+                  whileHover={{ y: -12 }}
+                  // Glassmorphism: dark background with white transparency and heavy blur
+                  className="h-full bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-blue-500/50"
                 >
-                  {/* Card Image Wrapper */}
-                  <div className="relative h-64 w-full overflow-hidden">
+                  <div className="relative h-72 w-full overflow-hidden">
                     <Image
                       src={course.image}
                       alt={`${course.title} - Saharanpur's Best Coaching`}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent" />
-                    <div className="absolute bottom-4 left-6">
-                      <span className="bg-white/90 backdrop-blur-sm text-blue-900 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                    {/* Darker gradient for image overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent" />
+                    <div className="absolute bottom-6 left-8">
+                      <span className="bg-blue-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-tighter shadow-lg">
                         Saharanpur Batch 2026
                       </span>
                     </div>
                   </div>
 
-                  {/* Card Content */}
-                  <div className="p-8">
-                    <h2 className="text-2xl font-bold text-blue-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  <div className="p-10">
+                    <h2 className="text-3xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
                       {course.title}
                     </h2>
-                    <p className="text-gray-600 leading-relaxed mb-6">
+                    <p className="text-slate-400 leading-relaxed mb-8 font-medium">
                       {course.shortDescription}
                     </p>
-                    
-                    <div className="flex items-center justify-between">
+
+                    <div className="flex items-center justify-between pt-6 border-t border-white/5">
                       <div className="flex -space-x-2">
-                         {/* Visual indicator of subjects or students */}
-                         {[1,2,3].map((i) => (
-                           <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-600">
-                             {i === 3 ? '100+' : '★'}
-                           </div>
-                         ))}
-                         <span className="pl-4 text-xs text-blue-900/50 font-medium self-center">Join 500+ Students</span>
+                        {[1, 2, 3].map((i) => (
+                          <div
+                            key={i}
+                            className="w-9 h-9 rounded-full border-2 border-[#020617] bg-slate-800 flex items-center justify-center text-[10px] font-bold text-blue-400"
+                          >
+                            {i === 3 ? "100+" : "★"}
+                          </div>
+                        ))}
+                        <span className="pl-4 text-xs text-slate-500 font-bold self-center uppercase tracking-widest">
+                          Join 500+ Students
+                        </span>
                       </div>
-                      
-                      <div className="flex items-center text-blue-600 font-bold group-hover:translate-x-2 transition-transform">
-                        Explore Course
-                        <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+
+                      <div className="flex items-center text-blue-400 font-black text-sm uppercase group-hover:translate-x-2 transition-transform">
+                        Explore
+                        <svg
+                          className="w-5 h-5 ml-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={3}
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
                         </svg>
                       </div>
                     </div>
