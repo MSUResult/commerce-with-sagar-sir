@@ -43,15 +43,33 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-20">
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/logo.png"
-                alt="logo"
-                height={40}
-                width={70}
-                className="rounded-full"
-              />
-            </Link>
+            {/* Logo Section */}
+{/* Logo Section */}
+<div className="flex-shrink-0 flex items-center">
+  <Link href="/" className="group relative flex items-center">
+    {/* This container ensures the logo never "leaks" out of the nav */}
+    <div className="relative h-18 w-28 md:w-28 flex items-center justify-center 
+      bg-white/5 backdrop-blur-md 
+      border border-white/10 rounded-xl 
+      px-3 py-1 overflow-hidden
+      transition-all duration-500 
+      group-hover:border-blue-500/50 
+      group-hover:bg-white/10
+      shadow-[inset_0_0_10px_rgba(255,255,255,0.02)]"
+    >
+      <Image
+        src="/logo.png"
+        alt="Commerce Coaching Logo"
+        fill // This fills the container while staying inside it
+        priority
+        className="object-contain p-1.5 transition-transform duration-500 group-hover:scale-105"
+      />
+      
+      {/* Subtle Glow Effect behind logo on hover */}
+      <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/5 transition-colors duration-500 -z-10" />
+    </div>
+  </Link>
+</div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-4">
