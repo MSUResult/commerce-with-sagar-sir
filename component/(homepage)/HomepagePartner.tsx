@@ -104,34 +104,41 @@ const HomepagePartner = () => {
 
         {/* Right Side: Image Container */}
         {/* Set to z-10 so it sits behind the text layer */}
-        <motion.div 
-          variants={itemVars}
-          className='w-full lg:w-[40%] order-1 lg:order-2 relative group max-w-md lg:max-w-none mx-auto z-10'
-        >
-          <div className="absolute -inset-4 bg-blue-600/20 rounded-[3rem] blur-3xl opacity-50 group-hover:opacity-80 transition duration-1000" />
-          <div className="absolute -inset-1 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000" />
-          
-          <div className='relative overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl aspect-[4/5] lg:aspect-[3/4] bg-blue-900/20'>
-            <Image 
-              src='/siruse.png' 
-              alt='Sagar Sir - Accountancy Expert' 
-              width={800} 
-              height={1000} 
-              className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
-              priority
-            />
-            
-            <div className="absolute bottom-8 right-8 hidden lg:block">
-              <Link href={'/contact'} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full font-black text-lg shadow-2xl transform transition hover:-translate-y-1 active:scale-95">
-                ENROLL NOW <ArrowRight size={20} />
-              </Link>
-            </div>
+      {/* Right Side: Image Container */}
+<motion.div 
+  variants={itemVars}
+  className='w-full lg:w-[40%] order-1 lg:order-2 relative group max-w-md lg:max-w-none mx-auto z-10'
+>
+  <div className="absolute -inset-4 bg-blue-600/20 rounded-[3rem] blur-3xl opacity-50 group-hover:opacity-80 transition duration-1000" />
+  <div className="absolute -inset-1 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000" />
+  
+  {/* Added 'aspect-square' for mobile to prevent it from being too tall/zoomed */}
+  <div className='relative overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl aspect-square md:aspect-[4/5] lg:aspect-[3/4] bg-blue-900/20'>
+    <Image 
+      src='/siruse.png' 
+      alt='Sagar Sir - Accountancy Expert' 
+      width={800} 
+      height={1000} 
+      /* CHANGES MADE HERE:
+         1. Added 'scale-90' on mobile to "zoom out" (md:scale-100 resets it for desktop).
+         2. Changed to 'object-contain' on mobile so the whole image fits without cropping.
+      */
+      className="w-full h-full object-contain md:object-cover object-top scale-90 md:scale-100 transition-transform duration-1000 group-hover:scale-105"
+      priority
+    />
+    
+    {/* This button stays hidden on mobile to keep the image clear */}
+    <div className="absolute bottom-8 right-8 hidden lg:block">
+      <Link href={'/contact'} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full font-black text-lg shadow-2xl transform transition hover:-translate-y-1 active:scale-95">
+        ENROLL NOW <ArrowRight size={20} />
+      </Link>
+    </div>
 
-            <div className="absolute top-6 left-6 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full">
-                <p className="text-white text-xs font-bold tracking-widest uppercase">Best in Saharanpur</p>
-            </div>
-          </div>
-        </motion.div>
+    <div className="absolute top-6 left-6 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full">
+        <p className="text-white text-xs font-bold tracking-widest uppercase">Best in Saharanpur</p>
+    </div>
+  </div>
+</motion.div>
 
       </motion.section>
     </main>
