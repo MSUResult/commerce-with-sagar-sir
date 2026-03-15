@@ -98,7 +98,7 @@ const ContactSection = () => {
 
             <div className="space-y-8">
               <ContactLink icon={<Phone size={20} />} label="Call Us" value="+91 76185 50475" href="tel:+918218615688" />
-              <ContactLink icon={<Mail size={20} />} label="Email Us" value="shivanshsingh4539@gmail.com" href="mailto:shivanshsingh4539@gmail.com" />
+              <ContactLink icon={<Mail size={20} />} label="Email Us" value="sagarchanna22@gmail.com" href="mailto:sagarchanna22@gmail.com" />
               <div className="flex items-center gap-5">
                 <div className="w-12 h-12 rounded-2xl bg-red-600/20 flex items-center justify-center text-red-500 shadow-inner">
                   <MapPin size={20} />

@@ -24,7 +24,6 @@ const HomepagePartner = () => {
     }
   ]
 
-  // Animation Variants
   const containerVars = {
     hidden: { opacity: 0 },
     visible: { 
@@ -39,9 +38,9 @@ const HomepagePartner = () => {
   }
 
   return (
-    <main className='min-h-screen relative flex items-center justify-center py-12 px-4 sm:px-8 md:px-16 lg:px-24 bg-transparent overflow-hidden'>
+    <main className='min-h-screen relative flex items-center justify-center py-12 px-4 sm:px-8 md:px-14 lg:px-24 bg-transparent overflow-hidden'>
       
-      {/* Subtle Background Elements for "Texture" */}
+      {/* Background Decor */}
       <div className="absolute top-20 left-10 w-64 h-64 bg-blue-600/10 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-cyan-600/10 rounded-full blur-[150px] -z-10" />
 
@@ -50,18 +49,19 @@ const HomepagePartner = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className='flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20 w-full max-w-7xl'
+        className='flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-10 w-full max-w-7xl'
       >
         
         {/* Left Side: Content */}
-        <div className='w-full lg:w-3/5 space-y-8 md:space-y-12 order-2 lg:order-1 text-center lg:text-left'>
+        {/* Changed z-index to 40 and added lg:pr-12 to push the text away from the image */}
+        <div className='w-full lg:w-3/5 space-y-8 md:space-y-12 order-2 lg:order-1 text-center lg:text-left relative z-40 lg:pr-12'>
           <div className="space-y-4">
             <motion.h1 
               variants={itemVars}
-              className='font-black text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-white leading-[1.05] tracking-tighter'
+              className='font-black text-5xl sm:text-6xl md:text-7xl xl:text-7xl text-white leading-[1.1] tracking-tighter'
             >
               Master Accountancy <br className="hidden md:block" />
-              <span className='bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent italic'>
+              <span className='bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent italic inline-block pr-6 pb-2'>
                 with Sagar Sir
               </span>
             </motion.h1>
@@ -103,32 +103,30 @@ const HomepagePartner = () => {
         </div>
 
         {/* Right Side: Image Container */}
+        {/* Set to z-10 so it sits behind the text layer */}
         <motion.div 
           variants={itemVars}
-          className='w-full lg:w-2/5 order-1 lg:order-2 relative group max-w-md lg:max-w-none mx-auto'
+          className='w-full lg:w-[40%] order-1 lg:order-2 relative group max-w-md lg:max-w-none mx-auto z-10'
         >
-          {/* Multi-layered Glow */}
           <div className="absolute -inset-4 bg-blue-600/20 rounded-[3rem] blur-3xl opacity-50 group-hover:opacity-80 transition duration-1000" />
           <div className="absolute -inset-1 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000" />
           
           <div className='relative overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl aspect-[4/5] lg:aspect-[3/4] bg-blue-900/20'>
             <Image 
-              src='/sir.jpeg' 
+              src='/siruse.png' 
               alt='Sagar Sir - Accountancy Expert' 
               width={800} 
               height={1000} 
-              className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-110"
+              className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
               priority
             />
             
-            {/* Desktop Enroll Button Overlay */}
             <div className="absolute bottom-8 right-8 hidden lg:block">
               <Link href={'/contact'} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-full font-black text-lg shadow-2xl transform transition hover:-translate-y-1 active:scale-95">
                 ENROLL NOW <ArrowRight size={20} />
               </Link>
             </div>
 
-            {/* Float Badge */}
             <div className="absolute top-6 left-6 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full">
                 <p className="text-white text-xs font-bold tracking-widest uppercase">Best in Saharanpur</p>
             </div>

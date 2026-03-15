@@ -72,18 +72,15 @@ export default function ResultsPreview() {
 
         {/* View More Button - Fixed Colors */}
         <div className="flex justify-center">
-          <Link href="/results">
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="group flex items-center gap-3 bg-slate-900 text-white px-10 py-5 rounded-full font-black text-sm md:text-base uppercase tracking-widest shadow-xl shadow-blue-200/50 hover:bg-blue-600 transition-all duration-300"
-            >
-              View All Results
-              <span className="group-hover:translate-x-2 transition-transform duration-300">
-                →
-              </span>
-            </motion.button>
-          </Link>
+        <Link href="/results">
+  <motion.div 
+    whileHover={{scale: 1.05, y: -2}} 
+    whileTap={{scale: 0.95}} 
+    className="group flex items-center gap-3 bg-slate-900 text-white px-10 py-5 rounded-full cursor-pointer inline-flex"
+  >
+    View Results
+  </motion.div>
+</Link>
         </div>
       </div>
 

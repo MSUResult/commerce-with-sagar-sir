@@ -40,19 +40,14 @@ const socialLinks = [
   {
     icon: <Instagram size={20} />,
     label: "Instagram",
-    href: "https://instagram.com/yourprofile",
+    href: "https://www.instagram.com/commercewithsagarsir?igsh=dGtwdnJ4bGNqcWw0",
     color: "hover:text-pink-500",
   },
-  {
-    icon: <Send size={20} />,
-    label: "Telegram",
-    href: "https://t.me/yourusername",
-    color: "hover:text-blue-400",
-  },
+ 
   {
     icon: <MessageCircle size={20} />,
     label: "WhatsApp",
-    href: "https://wa.me/7618550475",
+    href: "https://wa.me/8218615688",
     color: "hover:text-green-500",
   },
   {
@@ -82,7 +77,7 @@ const quickLinks = [
 const contactItems = [
   { icon: "📍", label: "Location", value: "Saharanpur, India" },
   { icon: "📞", label: "Call / WhatsApp", value: "+91 8218615688" },
-  { icon: "✉", label: "Email", value: "shivanshsingh4539@gmail.com" },
+  { icon: "✉", label: "Email", value: "sagarchanna22@gmail.com" },
 ];
 
 export default function CommerceFooter() {

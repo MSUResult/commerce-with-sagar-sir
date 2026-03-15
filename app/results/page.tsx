@@ -129,7 +129,7 @@ export default function ResultsPage() {
         {/* Footer */}
         <div className="text-center py-16 border-t border-white/5 bg-white/5 backdrop-blur-xl">
           <p className="text-slate-500 text-[10px] font-bold tracking-[0.4em] uppercase">
-            Commerce Excellence Saharanpur • {results.length} Success Stories
+            Commerce Excellence Saharanpur •  Success Stories
           </p>
         </div>
       </div>

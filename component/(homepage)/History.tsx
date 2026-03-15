@@ -17,7 +17,7 @@ const AboutVisionary = () => {
         {/* Adjusted height for mobile (aspect-square) to ensure the face is visible */}
         <div className="relative w-full lg:w-1/2 aspect-square lg:aspect-auto min-h-[350px] lg:min-h-[600px]">
           <Image
-            src="/sir.jpeg" 
+            src='/siruse.png' 
             alt="The Visionary"
             fill
             className="object-cover object-top"

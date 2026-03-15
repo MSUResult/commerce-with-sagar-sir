@@ -121,9 +121,7 @@ export default function Home() {
                             {i === 3 ? "100+" : "★"}
                           </div>
                         ))}
-                        <span className="pl-4 text-xs text-slate-500 font-bold self-center uppercase tracking-widest">
-                          Join 500+ Students
-                        </span>
+                        
                       </div>
 
                       <div className="flex items-center text-blue-400 font-black text-sm uppercase group-hover:translate-x-2 transition-transform">

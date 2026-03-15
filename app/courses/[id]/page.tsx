@@ -21,7 +21,7 @@ export default async function CourseDetail({
     <main className="min-h-screen bg-transparent py-12 px-4 md:px-6">
       <div className="max-w-5xl mx-auto">
         <Link
-          href="/"
+          href="/courses"
           className="text-blue-600 font-medium flex items-center mb-6 hover:underline"
         >
           ← Back to Saharanpur Commerce Courses
