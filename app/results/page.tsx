@@ -23,7 +23,7 @@ export default function ResultsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="relative text-blue-400 text-[10px] md:text-xs tracking-[0.5em] uppercase font-black mb-4"
           >
-            ✦ Hall of Fame ✦
+            ✦ Sum Of our Good Scorer ✦
           </motion.p>
 
           <motion.h1
@@ -52,8 +52,8 @@ export default function ResultsPage() {
         <div className="max-w-6xl mx-auto px-6 -mt-8 mb-20 relative z-10">
           <div className="grid grid-cols-3 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl md:rounded-[3rem] overflow-hidden shadow-2xl">
             {[
-              { label: "Total Success", value: results.length },
-              { label: "Top Scorers", value: "4" },
+              { label: "Total Success", value: '500 +' },
+              { label: "Top Scorers", value: "100+" },
               { label: "Batch", value: "2025" },
             ].map((s, idx) => (
               <div
