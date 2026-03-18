@@ -7,6 +7,7 @@ import WhatsAppIcon from "@/component/WhatsappIcon";
 import CommerceFooter from "@/component/footer";
 
 import CommerceBackground from "@/component/CommerceBackground";
+import ShareButton from "@/component/ShareButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,6 +53,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         {/* This ensures the icon is global */}
+        <ShareButton />
         <WhatsAppIcon />
         <CommerceFooter  />
       </body>
