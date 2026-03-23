@@ -65,7 +65,7 @@ const AboutAndFAQ = () => {
             <h4 className="text-blue-600 font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase text-xs md:sm mb-4">
               Legacy of Excellence
             </h4>
-            <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-blue-950 leading-[1.1] md:leading-[0.9] mb-6 md:mb-8">
+            <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-blue-600 leading-[1.1] md:leading-[0.9] mb-6 md:mb-8">
               Defining the Future of{" "}
               <span className="text-blue-600">Accountancy.</span>
             </h2>
@@ -130,7 +130,10 @@ const AboutAndFAQ = () => {
                 Success isn't just about memorizing—it's about logic. Our
                 pedagogy makes complex concepts intuitive.
               </p>
-              <Link href={'/contact'}  className="w-full sm:w-auto bg-white text-blue-900 font-bold px-8 py-4 rounded-full hover:bg-blue-50 transition-colors">
+              <Link
+                href={"/contact"}
+                className="w-full sm:w-auto bg-white text-blue-900 font-bold px-8 py-4 rounded-full hover:bg-blue-50 transition-colors"
+              >
                 Book a Demo Class
               </Link>
             </div>
